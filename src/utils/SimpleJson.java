@@ -5,25 +5,11 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * A tiny, dependency-free JSON reader/writer.
- *
- * The assignment asks for data to be persisted as text/JSON. Rather than
- * depend on an external JSON library, this class implements just enough of
- * the JSON grammar (objects, arrays, strings, numbers, booleans, null) to
- * read and write the plain data this application needs. It is not a
- * general-purpose, spec-complete JSON library, but it round-trips everything
- * FileHandler writes.
- *
- * Parsed JSON objects become {@code Map<String,Object>},
- * arrays become {@code List<Object>}, and scalars become String / Double /
- * Boolean / null - the same shape the classic org.json library would give you.
- */
+
 public final class SimpleJson {
 
     private SimpleJson() { }
 
-    // ----------------------------- WRITING -----------------------------
 
     public static String escape(String s) {
         StringBuilder sb = new StringBuilder();
@@ -40,7 +26,6 @@ public final class SimpleJson {
         return sb.toString();
     }
 
-    /** Writes a value (String, Number, Boolean, Map, List, or null) as JSON text. */
     @SuppressWarnings("unchecked")
     public static String write(Object value) {
         StringBuilder sb = new StringBuilder();
@@ -81,7 +66,6 @@ public final class SimpleJson {
         }
     }
 
-    // ----------------------------- READING -----------------------------
 
     public static Object parse(String text) {
         Parser p = new Parser(text);
